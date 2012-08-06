@@ -22,7 +22,7 @@ Let's see some example:
     
     like_button = LikeButton()
 
-    like_button.render_buffer()
+    like_button.render()
     >> <div class="like-btn"><a href="#">Like</a></div>
 
 ###Installation

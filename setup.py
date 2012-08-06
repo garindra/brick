@@ -17,7 +17,7 @@ setup(
     packages=['brick'],
     author="Garindra Prahandono",
     author_email="garindraprahandono@gmail.com",
-    url='http://pycacher.readthedocs.org',
+    url='https://github.com/garindra/brick',
     description="brick is a pure python templating system.",
     long_description=long_description
 )
