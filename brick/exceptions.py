@@ -1,0 +1,2 @@
+class WrappingTagWithContentException(Exception):
+    pass
