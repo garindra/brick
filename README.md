@@ -1,4 +1,4 @@
-Brick
+Brick ![Build Status](https://secure.travis-ci.org/garindra/brick.png)](https://secure.travis-ci.org/garindra/brick.png)
 =====
 
 `brick` is a pure Python block-based templating system. 
@@ -33,11 +33,21 @@ Let's see some example:
 ###PyPI Page
 [http://pypi.python.org/pypi/brick](http://pypi.python.org/pypi/brick)
 
-###Inspiration
-This library is heavily inspired by the public description of Quora's webnode2 found [here](http://www.quora.com/Shreyes-Seshasai/Posts/Tech-Talk-webnode2-and-LiveNode).
+###Prerequisites
+`pycacher` is currently well tested on Python 2.5, 2.6 and 2.7.
+
+###Run unit tests
+If you have the `nose` Python unit tester library installed and want to run the unit test suite for this library, then simply run this command:
+    nosetests
+
+###Travis CI
+You can track the project's CI status on Travis at : [http://travis-ci.org/#!/garindra/pycacher](http://travis-ci.org/#!/garindra/pycacher)
 
 ###License
 MIT 2.0
+
+###Inspiration
+This library is heavily inspired by the public description of Quora's webnode2 found [here](http://www.quora.com/Shreyes-Seshasai/Posts/Tech-Talk-webnode2-and-LiveNode).
 
 ###Authors
 - Garindra Prahandono (garindraprahandono@gmail.com)
