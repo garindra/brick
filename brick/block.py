@@ -1,3 +1,5 @@
+from __future__ import with_statement
+
 from .element import Element
 import utils
 

@@ -1,3 +1,5 @@
+from __future__ import with_statement
+
 class Element(object):
     """
         Element is the base class for three main Brick classes: Tag, Block,
