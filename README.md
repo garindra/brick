@@ -11,10 +11,9 @@ Let's see some example:
     from brick import Block
     from brick.tags import *
 
-    class LikeButton(object):  
+    class LikeButton(Block):  
         
         def construct(self):
-            
             b = []
 
             with Div(class_=['like-btn']).into(b):

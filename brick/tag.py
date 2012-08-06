@@ -10,7 +10,7 @@ class Tag(element.Element):
         self._args = args
         self._kwargs = kwargs
     
-    def render(self):   
+    def render_buffer(self):   
         #content could be a string or list
         content = getattr(self, '_content', '')
         

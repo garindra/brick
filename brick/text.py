@@ -8,5 +8,5 @@ class Text(element.Element):
     def __init__(self, content):
         self.content = content
 
-    def render(self):
+    def render_buffer(self):
         return self.content

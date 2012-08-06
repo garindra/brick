@@ -25,7 +25,7 @@ class Block(Element):
 
     """
     
-    def render(self):
+    def render_buffer(self):
 
         context_manager = self.before_construct()
 

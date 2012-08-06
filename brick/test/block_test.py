@@ -13,18 +13,18 @@ class BlockTestCase(unittest.TestCase):
     def test_empty_block(self):
 
         block = EmptyBlock()
-        self.assertEqual(block.render_buffer(), "")
+        self.assertEqual(block.render(), "")
 
     def test_block_with_single_tag(self):
         
         block = SingleTagBlock()
-        self.assertEqual(block.render_buffer(), "<a>I am a lonely link tag.</a>")
+        self.assertEqual(block.render(), "<a>I am a lonely link tag.</a>")
 
     def test_block_with_multiple_tags(self):
 
         block = MultipleTagsBlock()
 
-        render_result = block.render_buffer()
+        render_result = block.render()
         target_result = "<a>first</a><a>second</a><a>third</a>"
 
         self.assertEqual(render_result, target_result)
@@ -33,7 +33,7 @@ class BlockTestCase(unittest.TestCase):
 
         block = MultiLevelTagsBlock()
 
-        render_result = block.render_buffer()
+        render_result = block.render()
         target_result = '<div><div><a>content</a></div></div>'
 
         self.assertEqual(render_result, target_result)
@@ -42,7 +42,7 @@ class BlockTestCase(unittest.TestCase):
     def test_multilevel_block(self):
         
         block = FirstLevelBlock()
-        self.assertEqual(block.render_buffer(), "<div>first<div>second</div></div>")
+        self.assertEqual(block.render(), "<div>first<div>second</div></div>")
 
     def test_wrapping_tag_exception_raising(self):
         block = WrappingTagWithContentExceptionRaisingBlock()
@@ -55,7 +55,7 @@ class BlockTestCase(unittest.TestCase):
 
         target_result = '<div id="wrapping-div"><div>original content</div></div>'
 
-        self.assertEqual(block.render_buffer(), target_result)
+        self.assertEqual(block.render(), target_result)
 
 
 class EmptyBlock(brick.Block):

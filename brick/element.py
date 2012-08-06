@@ -7,20 +7,20 @@ class Element(object):
         yield self
 
     def __str__(self):
-        return self.render_buffer()
+        return self.render()
 
-    def render_buffer(self):
+    def render(self):
         """ 
             
-            render_buffer is the method that external objects should call
+            `render` is the method that external objects should call
             to get the actual "contents" of the element.
 
-            What render_buffer does is basically calling the `render` method
+            What render does is basically calling the `render_buffer` method
             that should be implemented by the subclasses.
 
-            The `render` method can return a single string or a list of strings.
+            The `render_buffer` method can return a single string or a list of strings.
             If it happens to be a list of strings, then it is the task of the
-            `render_buffer` to merge them into a single string and return them.
+            `render` to merge them into a single string and return them.
 
         """
         
@@ -28,9 +28,9 @@ class Element(object):
 
         if utils.is_context_manager(context_manager):
             with context_manager:
-                result = self._process_buffer(self.after_render(self.render()))
+                result = self._process_buffer(self.after_render(self.render_buffer()))
         else:
-            result = self._process_buffer(self.after_render(self.render()))
+            result = self._process_buffer(self.after_render(self.render_buffer()))
 
         return result
 
@@ -49,7 +49,7 @@ class Element(object):
         #If the result is an instance of Element, then call the render_buffer method of it.
         #And return that.
         if isinstance(buf, Element):
-            return buf.render_buffer()
+            return buf.render()
 
         if isinstance(buf, list):
             return self._merge_buffer(buf)
@@ -60,22 +60,22 @@ class Element(object):
         for element in buf:
 
             if isinstance(element, Element):
-                temp_buf.append(element.render_buffer())
+                temp_buf.append(element.render())
 
             elif isinstance(element, str):
                 temp_buf.append(element)
 
             else:
-                raise Exception("Only Element or str instance are allowed in render_buffer")
+                raise Exception("Only Element or str instance are allowed in render")
 
         return ''.join(temp_buf)
 
-    def render(self):
+    def render_buffer(self):
         """ 
             Implementing the render method is simple; return a string, a list
             of strings, or an instance of Element subclass.
         """
-        raise NotImplementedError("`render` method should be implemented for %s" % (
+        raise NotImplementedError("`render_buffer` method should be implemented for %s" % (
                                     self.__class__.__name__))
     
     def before_render(self):
