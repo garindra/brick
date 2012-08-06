@@ -1,4 +1,4 @@
-Brick ![Build Status](https://secure.travis-ci.org/garindra/brick.png)](https://secure.travis-ci.org/garindra/brick.png)
+Brick [![Build Status](https://secure.travis-ci.org/garindra/brick.png)](https://secure.travis-ci.org/garindra/brick.png)
 =====
 
 `brick` is a pure Python block-based templating system. 
@@ -38,6 +38,7 @@ Let's see some example:
 
 ###Run unit tests
 If you have the `nose` Python unit tester library installed and want to run the unit test suite for this library, then simply run this command:
+    
     nosetests
 
 ###Travis CI
