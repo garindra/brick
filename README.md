@@ -34,7 +34,7 @@ Let's see some example:
 [http://pypi.python.org/pypi/brick](http://pypi.python.org/pypi/brick)
 
 ###Prerequisites
-`pycacher` is currently well tested on Python 2.5, 2.6 and 2.7.
+`brick` is currently well tested on Python 2.5, 2.6 and 2.7.
 
 ###Run unit tests
 If you have the `nose` Python unit tester library installed and want to run the unit test suite for this library, then simply run this command:
@@ -42,7 +42,7 @@ If you have the `nose` Python unit tester library installed and want to run the 
     nosetests
 
 ###Travis CI
-You can track the project's CI status on Travis at : [http://travis-ci.org/#!/garindra/pycacher](http://travis-ci.org/#!/garindra/pycacher)
+You can track the project's CI status on Travis at : [http://travis-ci.org/#!/garindra/brick](http://travis-ci.org/#!/garindra/brick)
 
 ###License
 MIT 2.0
