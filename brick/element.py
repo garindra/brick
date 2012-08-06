@@ -24,13 +24,13 @@ class Element(object):
 
         """
         
-        context_manager = self.before_render()
+        context_manager = self.before_render_buffer()
 
         if utils.is_context_manager(context_manager):
             with context_manager:
-                result = self._process_buffer(self.after_render(self.render_buffer()))
+                result = self._process_buffer(self.after_render_buffer(self.render_buffer()))
         else:
-            result = self._process_buffer(self.after_render(self.render_buffer()))
+            result = self._process_buffer(self.after_render_buffer(self.render_buffer()))
 
         return result
 
@@ -78,15 +78,15 @@ class Element(object):
         raise NotImplementedError("`render_buffer` method should be implemented for %s" % (
                                     self.__class__.__name__))
     
-    def before_render(self):
+    def before_render_buffer(self):
         """
 
         """
         pass
 
-    def after_render(self, buf):
+    def after_render_buffer(self, buf):
         """
-            `after_render` is a method that's called
+        
         """
         return buf
 

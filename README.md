@@ -1,4 +1,3 @@
-
 Brick
 =====
 
@@ -33,6 +32,9 @@ Let's see some example:
 
 ###PyPI Page
 [http://pypi.python.org/pypi/brick](http://pypi.python.org/pypi/brick)
+
+###Inspiration
+This library is heavily inspired by the public description of Quora's webnode2 found [here](http://www.quora.com/Shreyes-Seshasai/Posts/Tech-Talk-webnode2-and-LiveNode).
 
 ###License
 MIT 2.0
