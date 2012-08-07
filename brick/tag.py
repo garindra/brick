@@ -18,6 +18,9 @@ class Tag(element.Element):
         if isinstance(content, list):
             content = self._merge_buffer(content)
 
+        elif content is None:
+            content = ""
+
         if self.self_closing:
             return '<' + self.tag_name + self._print_attrs() + '/>' 
         else:

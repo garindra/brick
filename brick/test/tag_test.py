@@ -12,6 +12,12 @@ class BrickTagTestCase(unittest.TestCase):
         #Should have the correct tag name
         self.assertEqual(self.tag_cls.tag_name, "a")
 
+    def test_tag_empty_content(self):
+        
+        tag = self.tag_cls()(None)
+
+        self.assertEqual(tag.render(), "<a></a>")
+
     def test_render_without_attributes_or_content(self):
         
         tag = self.tag_cls()
