@@ -59,6 +59,14 @@ class BlockTestCase(unittest.TestCase):
 
         self.assertEqual(block.render(), target_result)
 
+    def test_before_construct_context_manager(self):
+        
+        block = BlockWithContextManager()
+
+        block.render()
+
+        self.assertEqual(block.test_context_manager.enter_method_is_run, True)
+        self.assertEqual(block.test_context_manager.exit_method_is_run, True)
 
 class EmptyBlock(brick.Block):
     
@@ -165,3 +173,21 @@ class MultipleSectionTestBlock(brick.Block):
                 pass
 
         return z
+
+class BlockWithContextManager(brick.Block):
+    
+    def before_construct(self):
+        self.test_context_manager = TestBlockContextManager()
+
+        return self.test_context_manager
+
+    def construct(self):
+        pass
+
+class TestBlockContextManager(object):
+    
+    def __enter__(self):
+        self.enter_method_is_run = True
+
+    def __exit__(self, type, value, traceback):
+        self.exit_method_is_run = True

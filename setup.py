@@ -1,6 +1,8 @@
 import os
 from distutils.core import setup
 
+from brick import __version__
+
 try:
     import setuptools
 except ImportError:
@@ -13,7 +15,7 @@ with open(os.path.abspath('README.md')) as f:
 setup(
 
     name="brick",
-    version="0.0.1",
+    version=__version__,
     packages=['brick'],
     author="Garindra Prahandono",
     author_email="garindraprahandono@gmail.com",
