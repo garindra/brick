@@ -1,3 +1,5 @@
+import cgi
+
 import element
 import exceptions
 
@@ -26,8 +28,9 @@ class Tag(element.Element):
         else:
             return '<' + self.tag_name + self._print_attrs() + '>' + (str(content) or '') + '</' + self.tag_name + '>'
 
-    def __call__(self, content):
-        self._content = content
+    def __call__(self, content, escape=False):
+
+        self._content = cgi.escape(content) if escape else content
 
         return self
 
