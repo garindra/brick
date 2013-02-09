@@ -6,6 +6,7 @@ import exceptions
 class Tag(element.Element):
     
     self_closing = False
+    content = None
 
     def __init__(self, *args, **kwargs):
         
@@ -13,30 +14,30 @@ class Tag(element.Element):
         self._kwargs = kwargs
     
     def render_buffer(self):   
-        #content could be a string or list
-        content = getattr(self, '_content', '')
         
-        #if it's a list, then let's join it into a complete string
-        if isinstance(content, list):
-            content = self._merge_buffer(content)
-
-        elif content is None:
-            content = ""
+        buf = []
+        
+        buf.append('<' + self.tag_name + self._print_attrs())
 
         if self.self_closing:
-            return '<' + self.tag_name + self._print_attrs() + '/>' 
+            buf.append('/>')
+
         else:
-            return '<' + self.tag_name + self._print_attrs() + '>' + (str(content) or '') + '</' + self.tag_name + '>'
+            buf.append('>')
+            buf.append(self.content)
+            buf.append('</' + self.tag_name + '>')
+
+        return buf
 
     def __call__(self, content, escape=False):
 
-        self._content = cgi.escape(content) if escape else content
+        self.content = cgi.escape(content) if escape else content
 
         return self
 
     def __enter__(self):
 
-        if getattr(self, '_content', None):
+        if getattr(self, 'content', None):
             raise exceptions.WrappingTagWithContentException("Wrapping tag should not have content.")
 
         self.z += '<' + self.tag_name + self._print_attrs() + '>' 
@@ -77,4 +78,4 @@ class Tag(element.Element):
         self.remove_attribute(key)
 
     def set_content(self, content):
-        self._content = content
+        self.content = content

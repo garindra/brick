@@ -37,7 +37,6 @@ class Element(object):
         return result
     
     def process_buffer(self, buf):
-        
         return self.after_process_buffer(self._process_buffer(
                                             self.before_process_buffer(buf)))
 
