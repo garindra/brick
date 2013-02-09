@@ -5,11 +5,6 @@ class Element(object):
         Element is the base class for three main Brick classes: Tag, Block,
         and Text.
     """
-    def __iter__(self):
-        yield self
-
-    def __str__(self):
-        return self.render()
 
     def render(self):
         """ 
@@ -86,5 +81,17 @@ class Element(object):
 
     def after_process_buffer(self, buf):
         return buf
+
+    def __iter__(self):
+        """ Allows for appending a component to a list through __iadd__.
+
+        Example :
+
+        b = []
+
+        b += Component()
+
+        """
+        yield self
 
 import utils

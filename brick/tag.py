@@ -17,19 +17,16 @@ class Tag(element.Element):
         
         buf = []
         
-        buf.append('<' + self.tag_name + self._print_attrs())
-
-        if self.self_closing:
-            buf.append('/>')
-
-        else:
-            buf.append('>')
-            buf.append(self.content)
-            buf.append('</' + self.tag_name + '>')
+        buf.append(self.get_opening_tag_str())
+        buf.append(self.content)
+        buf.append(self.get_closing_tag_str())
 
         return buf
 
     def __call__(self, content, escape=False):
+
+        if self.self_closing:
+            raise exceptions.SelfClosingTagWithContentException("Self-closing tag should not have content")
 
         self.content = cgi.escape(content) if escape else content
 
@@ -37,33 +34,19 @@ class Tag(element.Element):
 
     def __enter__(self):
 
-        if getattr(self, 'content', None):
-            raise exceptions.WrappingTagWithContentException("Wrapping tag should not have content.")
+        if self.content is not None:
+            raise exceptions.WrappingTagWithContentException(
+                                        "Wrapping tag should not have content.")
 
-        self.z += '<' + self.tag_name + self._print_attrs() + '>' 
+        self.buf += self.get_opening_tag_str()
 
     def __exit__(self, type, value, traceback):
-        self.z += '</' + self.tag_name + '>'  
+        self.buf += self.get_closing_tag_str()
 
-    def into(self, z):
-        self.z = z
+    def into(self, buf):
+        self.buf = buf
 
         return self
-
-    def _print_attrs(self):
-        attrs_str = ''
-
-        for key, value in self._kwargs.items():
-
-            if key == 'class_':
-                key = 'class'
-
-            if isinstance(value, list):
-                value = ' '.join(value)
-
-            attrs_str += (' ' + key + '="' + str(value) + '"')
-            
-        return attrs_str
 
     def add_attribute(self, key, value):
         self._kwargs[key] = value
@@ -79,3 +62,27 @@ class Tag(element.Element):
 
     def set_content(self, content):
         self.content = content
+
+    def get_opening_tag_str(self):
+        return '<' + self.tag_name + self._print_attrs() + ('/>' if self.self_closing else '>')
+
+    def get_closing_tag_str(self):
+        return '</' + self.tag_name + '>'
+
+    def _print_attrs(self):
+        attrs_str = ''
+
+        for key, value in self._kwargs.items():
+
+            if key == 'class_':
+                key = 'class'
+            else:
+                key = key.replace('_', '-')
+
+            if isinstance(value, list):
+                value = ' '.join(value)
+
+            attrs_str += (' ' + key + '="' + str(value) + '"')
+            
+        return attrs_str
+

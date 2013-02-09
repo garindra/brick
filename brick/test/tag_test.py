@@ -1,6 +1,7 @@
 import unittest
 
 from brick.utils import make_tag
+import brick.exceptions as exc
 
 class BrickTagTestCase(unittest.TestCase):
     
@@ -67,3 +68,16 @@ class BrickTagTestCase(unittest.TestCase):
         tag['id'] = 'testing-id'
 
         self.assertEqual(tag.render(), '<a id="testing-id"></a>')
+
+    def test_tag_attributes_with_underscore_replaced_with_dash(self):
+        tag = self.tag_cls(data_id=1)
+
+        self.assertEqual(tag.render(), '<a data-id="1"></a>')
+    
+    def test_self_closing_tag_with_content_raise_exception(self):
+        
+        def _run():
+            self_closing_tag = make_tag('img', self_closing=True)
+            self_closing_tag()("content")
+
+        self.assertRaises(exc.SelfClosingTagWithContentException, _run)

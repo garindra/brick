@@ -68,6 +68,69 @@ class BlockTestCase(unittest.TestCase):
         self.assertEqual(block.test_context_manager.enter_method_is_run, True)
         self.assertEqual(block.test_context_manager.exit_method_is_run, True)
 
+    def test_context_manager_multiple_level(self):
+        
+        class RootBlock(brick.Block):
+            
+            def construct(self):
+                
+                b = []
+
+                for i in xrange(2):
+                    b += BranchBlock(1, i, 0)
+
+                return b
+
+        class BranchBlock(brick.Block):
+
+            def __init__(self, level, index, parent_index):
+                
+                self.level = level
+                self.index = index
+                self.parent_index = parent_index
+
+                self.batch()
+
+            #def before_construct(self):
+            #    return BranchContextManager()
+
+            def batch(self):
+                #print "%s:%s:%s" % (self.level, self.index, self.parent_index)
+                pass
+
+            def construct(self):
+
+                print "%s:%s:%s" % (self.level, self.index, self.parent_index)
+
+                b = []
+
+                if self.level < 2:
+                    for i in xrange(2):
+                        b += BranchBlock(self.level + 1, i, self.index)
+
+                return b
+
+        class Cacher(object):
+            pass
+
+        class Batcher(object):
+            pass
+
+        class BranchContextManager():
+
+            def __init__(self):
+                pass
+            
+            def __enter__(self):
+                pass
+            
+            def __exit__(self, type, value, traceback):
+                pass
+
+        root_block = RootBlock()
+
+        print root_block.render()
+
 class EmptyBlock(brick.Block):
     
     def construct(self):
