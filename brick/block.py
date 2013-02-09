@@ -60,7 +60,7 @@ class Block(Element):
             down to the `render_buffer` method. 
 
             Example uses of this would be to wrap whatever the result object
-            of the render method with a DIV, for example.
+            of the render method with a Div tag, for example.
         """
         return result
 

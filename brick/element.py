@@ -88,7 +88,6 @@ class Element(object):
         Example :
 
         b = []
-
         b += Component()
 
         """
