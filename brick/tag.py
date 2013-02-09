@@ -11,8 +11,14 @@ class Tag(element.Element):
     def __init__(self, *args, **kwargs):
         
         self._args = args
+
+        for key, value in kwargs.items():
+            if key == 'class_':
+                kwargs['class'] = value
+                del kwargs['class_']
+
         self._kwargs = kwargs
-    
+
     def render_buffer(self):   
         
         buf = []
@@ -73,11 +79,7 @@ class Tag(element.Element):
         attrs_str = ''
 
         for key, value in self._kwargs.items():
-
-            if key == 'class_':
-                key = 'class'
-            else:
-                key = key.replace('_', '-')
+            key = key.replace('_', '-')
 
             if isinstance(value, list):
                 value = ' '.join(value)
