@@ -42,7 +42,7 @@ class Element(object):
             return ""
 
         #If the result is a string, then just directly return that
-        elif isinstance(buf, str):
+        elif isinstance(buf, basestring):
             return buf 
         
         #If the result is an instance of Element, then call the render_buffer method of it.
@@ -54,7 +54,8 @@ class Element(object):
             return "".join(map(self._process_buffer, buf))
 
         else:
-            raise Exception("Only Element or str instance are allowed in render")
+            raise Exception(
+                "Only Element or str instance are allowed in render. %s" % type(buf))
 
     def render_buffer(self):
         """ 
