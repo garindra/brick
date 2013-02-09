@@ -76,11 +76,11 @@ class Element(object):
         """
         pass
 
-    def after_render_buffer(self, buf):
+    def after_render_buffer(self, result_str):
         """
         
         """
-        return buf
+        return result_str
 
     def before_process_buffer(self, buf):
         return buf
