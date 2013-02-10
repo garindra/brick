@@ -57,8 +57,14 @@ class Tag(element.Element):
     def add_attribute(self, key, value):
         self._kwargs[key] = value
 
+    def get_attribute(self, key):
+        return self._kwargs.get(key)
+
     def remove_attribute(self, key):
         del self._kwargs[key]
+    
+    def __getitem__(self, key):
+        return self.get_attribute(key)
 
     def __setitem__(self, key, value):
         self.add_attribute(key, value)
