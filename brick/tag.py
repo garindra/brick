@@ -90,7 +90,7 @@ class Tag(element.Element):
             if isinstance(value, list):
                 value = ' '.join(value)
 
-            attrs_str += (' ' + key + '="' + str(value) + '"')
+            attrs_str += (' ' + key + '="' + cgi.escape(str(value), True) + '"')
             
         return attrs_str
 
