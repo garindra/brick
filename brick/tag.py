@@ -36,7 +36,13 @@ class Tag(element.Element):
 
         self.content = cgi.escape(content) if escape else content
 
+        if isinstance(content, element.Element):
+            raise Exception("Cannot pass brick.Element instance to a Tag %s" % self.__class__)
+
         return self
+
+    def wrap(self, element):
+        return [self.get_opening_tag_str(), element, self.get_closing_tag_str()] 
 
     def __enter__(self):
 
