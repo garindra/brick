@@ -23,9 +23,12 @@ class Tag(element.Element):
         
         buf = []
         
-        buf.append(self.get_opening_tag_str())
-        buf.append(self.content)
-        buf.append(self.get_closing_tag_str())
+        if self.self_closing:
+            buf.append(self.get_opening_tag_str())
+        else:
+            buf.append(self.get_opening_tag_str())
+            buf.append(self.content)
+            buf.append(self.get_closing_tag_str())
 
         return buf
 
@@ -99,4 +102,3 @@ class Tag(element.Element):
             attrs_str += (' ' + key + '="' + cgi.escape(str(value), True) + '"')
             
         return attrs_str
-
