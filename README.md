@@ -52,3 +52,7 @@ This library is heavily inspired by the public description of Quora's webnode2 f
 
 ###Authors
 - Garindra Prahandono (garindraprahandono@gmail.com)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/garindra/brick/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
