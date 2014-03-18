@@ -1,4 +1,4 @@
-Brick [![Build Status](https://secure.travis-ci.org/garindra/brick.png)](https://secure.travis-ci.org/garindra/brick.png)
+Brick 
 =====
 
 `brick` is a pure Python block-based templating system. 
